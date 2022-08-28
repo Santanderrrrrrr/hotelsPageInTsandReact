@@ -46,17 +46,19 @@ const [ memHoteli, setMemHoteli ] = useState<ForHotel["hotels"]>([])
     const hotelData = await getHotels()
     setMahoteli(hotelData!)
     setMemHoteli(hotelData!)
-    // console.log(mahoteli)
     // console.log("this is mahoteli")
   }
 
   useEffect(() => {
     dataAfterAwait()
   },[])
+
+  console.log(mahoteli)
+
   
 
   return (
-    <Box>
+    <Box >
       <Stack direction="column">
         <Box  sx={{height:'30%', backgroundColor:'skyblue'}}>
             <Map mahoteli={mahoteli}/>

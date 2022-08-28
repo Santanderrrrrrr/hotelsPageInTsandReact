@@ -2,6 +2,7 @@ import React from 'react'
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import CardMedia from '@mui/material/CardMedia';
+import Carousel from 'react-material-ui-carousel'
 import { Button, Card, CardActions, CardContent, Grid, Rating, Typography } from '@mui/material';
 
 
@@ -72,12 +73,26 @@ const ProductDisplayList: React.FC<Properties> = ({hotels, setOpenIt, setModalHo
         <Box key={index} sx={{  m:2, ml: 4, width: '100%' }}>
           <Stack spacing={2}>
               <Card sx={{ display: 'flex' }}>
-                <CardMedia
+                {/* <CardMedia
                   component="img"
                   sx={{ width: 300, height: 300 }}
                   image={hotel.imgs[0].url}
                   alt={hotel.name}
-                />
+                /> */}
+                <CardContent sx={{ width: 300, height: 300 }}>
+                  <Carousel sx={{width: 300, height: 300}}>
+                    {hotel.imgs.map((img, index)=>{
+                      return (
+                      <CardMedia
+                        key={index}
+                        component="img"
+                        sx={{ width: 300, height: 300 }}
+                        image={img.url}
+                        alt={hotel.name}
+                      />)
+                    })}
+                  </Carousel>
+                </CardContent>
                 <Stack sx={{display:'flex', direction:'column'}}>
                   <CardContent sx={{width:"95%"}}>
                     <Box sx={{ width: '95%', display: 'flex', direction: 'row',  justifyContent: "space-between"}}>

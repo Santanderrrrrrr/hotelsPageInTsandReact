@@ -33,8 +33,6 @@ interface Properties{
 export const getHotels = async(): Promise<Properties['hotels'] | undefined> => {
     try{
         let {data} = await axios.get('https://obmng.dbm.guestline.net/api/hotels?collection-id=OBMNG')
-        // let theData =JSON.parse(data);
-        console.log(data)
 
         let theDataArray: Properties['hotels'] = [];
 

@@ -2,7 +2,11 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import Carousel from 'react-material-ui-carousel'
 import { CardContent, CardMedia, Rating, Stack } from '@mui/material';
+// import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+// import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material';
 
 interface Properties{
   hotel: {
@@ -66,13 +70,28 @@ const BasicModal: React.FC<Properties> = ({hotel, openIt, setOpenIt}) => {
         
           {hotel && <Box sx={style}>
             <Stack spacing={2}>
+              
+                  <Carousel
+                   next={ (next, active) => console.log(`we left ${active}, and are now at ${next}`) }
+                   prev={ (prev, active) => console.log(`we left ${active}, and are now at ${prev}`) }          
+                   sx={{width: '100%'}}
+                   NextIcon={<ArrowForwardIos/>}
+                   PrevIcon={<ArrowBackIos/>}
+                  >
+                    {hotel.imgs.map((img, index)=>{
+                      return (
+                      <Stack sx={{ width: '100%', height: 300, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <img
+                          key={index}
+                          // component="img"
+                          style={{maxWidth:500, maxHeight:'100%'}}
+                          src={img.url}
+                          alt={hotel.name}
+                        />
+                      </Stack>)
+                    })}
+                  </Carousel>
                 
-                  <CardMedia
-                    component="img"
-                    sx={{ width: "100%", height: 300 }}
-                    image={hotel.imgs[0].url}
-                    alt={hotel.name}
-                  />
                   <Stack sx={{display:'flex', direction:'column'}}>
                     <CardContent >
                       <Box sx={{ display: 'flex', direction: 'row',  justifyContent: "space-between"}}>

@@ -78,7 +78,6 @@ const Map: React.FC<ForMapB> =  ({mahoteli}) => {
 
   const mapRef = useRef()
 
-  console.log(mahoteli)
   useEffect(() => {
     locationSetter()
     

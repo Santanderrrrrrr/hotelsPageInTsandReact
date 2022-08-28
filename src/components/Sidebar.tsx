@@ -1,16 +1,15 @@
-import React, { useEffect, useState, useMemo } from 'react'
+import React, { useEffect, useState } from 'react'
 import { List, ListItemButton, ListItemIcon, ListItemText, Box, Rating, Stack } from '@mui/material'
 import ExpandLess from '@mui/icons-material/ExpandLess'
 import ExpandMore from '@mui/icons-material/ExpandMore'
 import StarsIcon from '@mui/icons-material/Stars'
 import SingleBedIcon from '@mui/icons-material/SingleBed'
 import Collapse from '@mui/material/Collapse';
-// import StarBorder from '@mui/icons-material/StarBorder';
 import BedIcon from '@mui/icons-material/Bed';
 import HotelIcon from '@mui/icons-material/Hotel';
 import EscalatorWarningIcon from '@mui/icons-material/EscalatorWarning';
 
-import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 
 
@@ -55,7 +54,6 @@ const Sidebar: React.FC<Properties> = ({setHotels, hotels, memHotels}) => {
 
   const [value, setValue] = React.useState<number | null>(2);
 
-  const memorizedHotels = useMemo(()=> hotels, [])
 
   const collapseStars = () => {
     
@@ -66,7 +64,6 @@ const Sidebar: React.FC<Properties> = ({setHotels, hotels, memHotels}) => {
   };
 
   useEffect(()=>{
-    console.log('çhange registered', memorizedHotels)
     if(value){
       let ratedHotels = memHotels.filter((hotel)=>{
         return Number(hotel.rating) >= value
@@ -77,7 +74,7 @@ const Sidebar: React.FC<Properties> = ({setHotels, hotels, memHotels}) => {
 
 //sx={{display: 'flex', direction: {xs:'column', md:'row'}, alignItems:"flex-start"}}
   return (
-    <ThemeProvider theme={theme}>
+    // <ThemeProvider theme={theme}>
       <Box >
         <Stack display="flex" direction={{xs:'row', md:'column'}} justifyContent="flex-start" alignItems={{xs:"flex-start", md:"flex-start"}} spacing={0}>
           <Box> 
@@ -135,7 +132,7 @@ const Sidebar: React.FC<Properties> = ({setHotels, hotels, memHotels}) => {
           </Box>
         </Stack>
       </Box>
-    </ThemeProvider>
+    // {/* </ThemeProvider> */}
   )
 }
 
