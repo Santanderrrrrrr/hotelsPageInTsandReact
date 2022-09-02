@@ -85,7 +85,7 @@ const Map: React.FC<ForMapB> =  ({mahoteli}) => {
 
   const options = useMemo(() => ({
     disableDefaultUi: true,
-    mapId: "cdf49b4f0da1d8f0",
+    mapId: process.env.MAP_ID,
     clickableIcons: false
   }), [])
 
@@ -94,10 +94,11 @@ const Map: React.FC<ForMapB> =  ({mahoteli}) => {
   let validCoords = mahoteli!.filter((hoteli)=>{
     return typeof(hoteli.location.geoLocation.latitude) === "number" && typeof(hoteli.location.geoLocation.longitude) === "number"
     })
+    
   const markers = validCoords!.map((hoteli, index)=>{
     let position: LatLngLiteral = {lat: hoteli.location.geoLocation.latitude, lng: hoteli.location.geoLocation.longitude}
     // console.log("facts")
-    let icon = hoteli.imgs[0].url
+    // let icon = hoteli.imgs[0].url
     return (<>
       <div key={index}>
         <Marker key={index} position={position}/>
@@ -106,7 +107,7 @@ const Map: React.FC<ForMapB> =  ({mahoteli}) => {
   })
 
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: "AIzaSyBOG_QmYrDwBnoW0TG7iL4N0Ox6LTh4B8E",
+    googleMapsApiKey: process.env.MAPS_API_KEY,
   })
 
   if(!isLoaded){
@@ -120,7 +121,8 @@ const Map: React.FC<ForMapB> =  ({mahoteli}) => {
         center={location} 
         mapContainerStyle={containerStyle} 
         options={options}
-        onLoad={onLoad}>
+        onLoad={onLoad}
+        >
           {React.Children.toArray(markers)}
           {/* <Marker /> */}
           

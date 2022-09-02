@@ -54,7 +54,7 @@ const style = {
 
 const BasicModal: React.FC<Properties> = ({hotel, openIt, setOpenIt}) => {
   const handleClose = () => {
-    console.log(openIt)
+    // console.log(openIt)
     setOpenIt(false);
   }
   
@@ -72,8 +72,8 @@ const BasicModal: React.FC<Properties> = ({hotel, openIt, setOpenIt}) => {
             <Stack spacing={2}>
               
                   <Carousel
-                   next={ (next, active) => console.log(`we left ${active}, and are now at ${next}`) }
-                   prev={ (prev, active) => console.log(`we left ${active}, and are now at ${prev}`) }          
+                   next={ (next, active) => console.log(``) }
+                   prev={ (prev, active) => console.log(``) }          
                    sx={{width: '100%'}}
                    NextIcon={<ArrowForwardIos/>}
                    PrevIcon={<ArrowBackIos/>}

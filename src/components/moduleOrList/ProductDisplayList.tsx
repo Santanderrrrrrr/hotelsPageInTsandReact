@@ -8,7 +8,8 @@ import { Button, Card, CardActions, CardContent, Grid, Rating, Typography } from
 
 
 type hotel = {
-  name: string;
+  id: string
+  name: string
   imgs: {
     url: string
   }[] 
@@ -81,10 +82,10 @@ const ProductDisplayList: React.FC<Properties> = ({hotels, setOpenIt, setModalHo
                 /> */}
                 <CardContent sx={{ width: 300, height: 300 }}>
                   <Carousel sx={{width: 300, height: 300}}>
-                    {hotel.imgs.map((img, index)=>{
+                    {hotel.imgs.map((img, i)=>{
                       return (
                       <CardMedia
-                        key={index}
+                        key={i}
                         component="img"
                         sx={{ width: 300, height: 300 }}
                         image={img.url}
@@ -114,7 +115,7 @@ const ProductDisplayList: React.FC<Properties> = ({hotels, setOpenIt, setModalHo
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button onClick={()=>handleOpen(hotel.name, hotel.description)} size="small">View</Button>
+                    <Button onClick={()=>handleOpen(hotel.name, hotel.description)} size="small">View </Button>
                   </CardActions>
                 </Stack>
               </Card>

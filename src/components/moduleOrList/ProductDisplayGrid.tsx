@@ -13,6 +13,7 @@ import { JsxElement } from 'typescript';
 
 
 type hotel = {
+  id: string
   name: string;
   imgs: {
     url: string
@@ -71,7 +72,7 @@ const ProductDisplayGrid: React.FC<Properties> = ({hotels, setOpenIt, setModalHo
   
 
   let theCard =hotels.map((hotel, index) => {
-    // console.log(index)
+    
     return(
       <>
         <Box key={index} ref={addToRefs} ml={4}>

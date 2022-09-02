@@ -1,4 +1,4 @@
-import { Stack, Box, styled, Typography,  } from '@mui/material';
+import { Stack, Box, styled, Typography, Tabs, Tab,  } from '@mui/material';
 import ViewListIcon from '@mui/icons-material/ViewList';
 import ViewModuleIcon from '@mui/icons-material/ViewModule';
 import ToggleButton from '@mui/material/ToggleButton';
@@ -8,10 +8,35 @@ import { getHotels } from '../dataSource/axiosData'
 
 import ProductDisplayList from './moduleOrList/ProductDisplayList';
 import ProductDisplayGrid from './moduleOrList/ProductDisplayGrid';
+import RoomDisplay from './roomsList/RoomDisplay'
 
 import BasicModal from './moduleOrList/modal/BasicModal';
 
+
+type room = {
+  id: string
+  name: string
+  bedConfiguration: string
+  longDescription: string
+  occupancy:{
+      maxAdults: number,
+      maxChildren: number,
+  }
+  disabledAccess: boolean
+  facilities:{
+      code: string,
+      name: string
+  }[]
+  images: {
+      url: string
+  }[]
+
+}
+
+type actHotel = room[] //X
+
 type hotel = {
+  id: string
   name: string;
   imgs: {
     url: string
@@ -39,7 +64,8 @@ type hotel = {
 interface Properties{
   
   hotels:hotel[]
-  setHotels: React.Dispatch<React.SetStateAction<hotel[]>>
+  filteredHotelRoomSets: actHotel[]
+  
 }
 
 
@@ -49,30 +75,49 @@ const CustomToggleButtonGroup = styled(ToggleButtonGroup)(({theme})=>({
   
 }))
 
+function a11yProps(index: number) {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+  };
+}
 
-
-const ProductDisplay: React.FC<Properties> = ({hotels, setHotels}) => {
+const ProductDisplay: React.FC<Properties> = ({ hotels, filteredHotelRoomSets}) => {
+  
   const [openIt, setOpenIt] = useState<boolean>(false);
   const [ modalHotel, setModalHotel ] = useState<hotel>()
-
-
-  
-  
- 
-
-  const [view, setView] = React.useState<string>('list');
+  const [view, setView] = useState<string>('list');
+  const [ seeRooms, setSeeRooms ] = useState<number>(0)
 
   const handleChange = (event: React.MouseEvent<HTMLElement>, nextView: string) => {
     setView(nextView);
-    console.log(nextView)
+
+    // console.log(nextView)
+  };
+  const handleTabChange =(event: React.SyntheticEvent, newValue: number) => {
+    setSeeRooms(newValue);
   };
 
   return (
     <Box sx={{ width:'100%'}}>
       <Box sx={{  width:'100%', display: 'flex', direction: 'column', alignItems:"center", justifyContent: "space-between", p:0, mr:8}}>
-        <Typography variant="h6" sx={{ml:4}}>Available Hotels</Typography>
-        <Stack sx={{ m: 2,  direction: 'column', alignItems: {md:'flex-end', xs:'flex-end'}, justifyContent:'space-between', width:{xs:"50%", md: "50%"}}}>
-          
+        {/* <Typography variant="h6" sx={{ml:4}}>{seeRooms === 0? 'Viewing Hotels': 'Viewing Rooms'}</Typography> */}
+
+        {/*Choose between viewing hotels and rooms */}
+        <Box sx={{ borderBottom: 1, borderColor: "divider", m:2}}>
+          <Tabs
+            value={seeRooms}
+            onChange={handleTabChange}
+            aria-label="basic tabs"
+          >
+            <Tab label="Hotels" {...a11yProps(0)} />
+            <Tab label="Hotels w/ Rooms" {...a11yProps(1)} />
+            
+          </Tabs>
+        </Box>
+
+        {/* toggle between list and module view */}
+        {!seeRooms && <Stack sx={{ m: 2,  direction: 'column', alignItems: {md:'flex-end', xs:'flex-end'}, justifyContent:'space-between', width:{xs:"30%", md: "30%"}}}>  
           <CustomToggleButtonGroup
             orientation="horizontal"
             value={view}
@@ -88,12 +133,18 @@ const ProductDisplay: React.FC<Properties> = ({hotels, setHotels}) => {
             </ToggleButton>
             
           </CustomToggleButtonGroup>
-        </Stack>
+        </Stack>}
       </Box>
 
       <Stack>
-        {view === "list" && <ProductDisplayList hotels={hotels} setOpenIt={setOpenIt} setModalHotel={setModalHotel}/>}
-        {view === "module" && <ProductDisplayGrid hotels={hotels} setOpenIt={setOpenIt} setModalHotel={setModalHotel}/>}
+        {!seeRooms?( 
+          <>
+            {view === "list" && <ProductDisplayList hotels={hotels} setOpenIt={setOpenIt} setModalHotel={setModalHotel}/>}
+            {view === "module" && <ProductDisplayGrid hotels={hotels} setOpenIt={setOpenIt} setModalHotel={setModalHotel}/>}
+          </>
+        ):(
+          <RoomDisplay hotels={hotels} filteredHotelRoomSets={filteredHotelRoomSets}/>
+        )}
         <BasicModal hotel={modalHotel} openIt={openIt} setOpenIt={setOpenIt}/>
       </Stack>
 
