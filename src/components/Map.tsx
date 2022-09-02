@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useState, useRef, useCallback} from 'react'
+import React, {useEffect, useMemo, useRef, useCallback} from 'react'
 
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api'
 
@@ -85,7 +85,7 @@ const Map: React.FC<ForMapB> =  ({mahoteli}) => {
 
   const options = useMemo(() => ({
     disableDefaultUi: true,
-    mapId: process.env.MAP_ID,
+    mapId: process.env.REACT_APP_MAP_ID,
     clickableIcons: false
   }), [])
 
@@ -107,7 +107,7 @@ const Map: React.FC<ForMapB> =  ({mahoteli}) => {
   })
 
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: process.env.MAPS_API_KEY,
+    googleMapsApiKey: process.env.REACT_APP_MAPS_API_KEY,
   })
 
   if(!isLoaded){

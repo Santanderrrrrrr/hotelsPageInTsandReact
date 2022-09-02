@@ -81,6 +81,7 @@ const [filteredHotelRoomSets, setFilteredHotelRoomSets] = useState<actHotel[]>([
     }
     // console.log(dataArray)
     setHotelsRoomSets(dataArray)
+    setFilteredHotelRoomSets(dataArray)
   }
   
   const dataAfterAwait = async()=>{

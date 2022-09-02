@@ -109,7 +109,8 @@ const Sidebar: React.FC<Properties> = ({setHotels, memHotels, hotelsRoomsSets, s
       // console.log(fhrs)
       setFilteredHotelRoomSets(fhrs)
     }
-  }, [adultsKids])
+    console.log(`thisis adultsKids: ${adultsKids.adults}, ${adultsKids.kids}, and this is value:${value}`)
+  }, [adultsKids, value])
 
   
 

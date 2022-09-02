@@ -51,7 +51,7 @@ const EachRoom: React.FC<Properties> = ({theRightRooms}) => {
     })
   return (
     <>
-    <Typography variant="body1">Available Rooms </Typography>
+    <Typography variant="body1">{theRightRooms? 'Available Rooms' : 'Set a criteria for wanted rooms'} </Typography>
     {roomsMap}
     </>
   )
