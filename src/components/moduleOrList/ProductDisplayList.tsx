@@ -73,28 +73,28 @@ const ProductDisplayList: React.FC<Properties> = ({hotels, setOpenIt, setModalHo
       <>
         <Box key={index} sx={{  m:2, ml: 4, width: '100%' }}>
           <Stack spacing={2}>
-              <Card sx={{ display: 'flex' }}>
+              <Stack display= 'flex' direction={{xs:'column', md:'row'}}>
                 {/* <CardMedia
                   component="img"
                   sx={{ width: 300, height: 300 }}
                   image={hotel.imgs[0].url}
                   alt={hotel.name}
                 /> */}
-                <CardContent sx={{ width: 300, height: 300 }}>
-                  <Carousel sx={{width: 300, height: 300}}>
+                <CardContent sx={{ width:{xs:'100%', md:'40%', lg:'25%'}, height: 300 }}>
+                  <Carousel sx={{width: '100%', height: 300}}>
                     {hotel.imgs.map((img, i)=>{
                       return (
                       <CardMedia
                         key={i}
                         component="img"
-                        sx={{ width: 300, height: 300 }}
+                        sx={{ width: '100%', height: '100%' }}
                         image={img.url}
                         alt={hotel.name}
                       />)
                     })}
                   </Carousel>
                 </CardContent>
-                <Stack sx={{display:'flex', direction:'column'}}>
+                <Stack sx={{width:{xs: '100%', md:'60%', lg:'75%'}, display:'flex', direction:'column'}}>
                   <CardContent sx={{width:"95%"}}>
                     <Box sx={{ width: '95%', display: 'flex', direction: 'row',  justifyContent: "space-between"}}>
                       <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
@@ -118,7 +118,7 @@ const ProductDisplayList: React.FC<Properties> = ({hotels, setOpenIt, setModalHo
                     <Button onClick={()=>handleOpen(hotel.name, hotel.description)} size="small">View </Button>
                   </CardActions>
                 </Stack>
-              </Card>
+              </Stack>
           </Stack>
         </Box>
       </>
