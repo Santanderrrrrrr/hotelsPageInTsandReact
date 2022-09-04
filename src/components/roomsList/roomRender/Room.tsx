@@ -89,7 +89,7 @@ const Room:React.FC<Properties> = ({ hotels, filteredHotelRoomSets}) =>{        
               id="panel1a-header"
             >
               <Stack key={index} direction="row" sx={{width:"80%", mb:2}}>
-                <Stack sx={{width:'27%'}}>
+                <Stack sx={{ display:{xs:'none', sm:'flex'}, width:'27%'}}>
                         <Carousel
                             next={ (next, active) => null }
                             prev={ (prev, active) => null }          
