@@ -107,7 +107,7 @@ const Map: React.FC<ForMapB> =  ({mahoteli}) => {
   })
 
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: process.env.REACT_APP_MAPS_API_KEY,
+    googleMapsApiKey: process.env.REACT_APP_MAPS_API_KEY as string,
   })
 
   if(!isLoaded){

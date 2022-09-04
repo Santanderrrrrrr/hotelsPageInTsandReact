@@ -68,19 +68,25 @@ const [ mahoteli, setMahoteli ] = useState<ForHotel["hotels"]>([])
 const [ memHoteli, setMemHoteli ] = useState<ForHotel["hotels"]>([])
 
 
-const [hotelsRoomSets, setHotelsRoomSets ] = useState<actHotel[]>([])
 const [filteredHotelRoomSets, setFilteredHotelRoomSets] = useState<actHotel[]>([])
-  
+
+const [ adultsKids, setAdultsKids ] = useState<{ adults?: number, kids?: number}>({adults: 0, kids: 0})
+
+  // const pusher = (array: actHotel, arrToPushTo: actHotel[])=>{
+  //   arrToPushTo.push(array)
+  // }
 
   const getDaHotelRooms = async (hotels: hotel[])=>{
-    const dataArray: actHotel[] = []
-    for(const hotel of hotels){
-        await getHotelRooms(hotel.id)
-        .then((hotelDeets)=>{dataArray.push(hotelDeets!)})
-        .catch((error: Error)=>{if (error instanceof Error )console.log(error.message? error.message : error)})
+    let dataArray: actHotel[] = []
+    for(let hotel of hotels){
+      let hotelDeets = await getHotelRooms(hotel.id)
+      hotelDeets = hotelDeets!.filter((room)=>{
+        return room.occupancy.maxChildren>= adultsKids.kids! && room.occupancy.maxAdults>= adultsKids.adults!
+      })
+      dataArray.push(hotelDeets!) 
     }
-    // console.log(dataArray)
-    setHotelsRoomSets(dataArray)
+    
+    // console.log('api call fired')
     setFilteredHotelRoomSets(dataArray)
   }
   
@@ -98,7 +104,7 @@ const [filteredHotelRoomSets, setFilteredHotelRoomSets] = useState<actHotel[]>([
 
   useEffect(()=>{
     getDaHotelRooms(mahoteli)
-  },[mahoteli])
+  },[mahoteli, adultsKids])
   // console.log(mahoteli)
 
   
@@ -114,10 +120,12 @@ const [filteredHotelRoomSets, setFilteredHotelRoomSets] = useState<actHotel[]>([
           <Box  >
             <Sidebar 
               setHotels={setMahoteli} 
-               
+              hotels={mahoteli} 
               memHotels={memHoteli}
-              hotelsRoomsSets={hotelsRoomSets}
-              setFilteredHotelRoomSets={setFilteredHotelRoomSets}/>
+              setAdultsKids={setAdultsKids}
+              adultsKids={adultsKids}
+              />
+              
           </Box>
           <Divider sx={{display:{sx:'none', md:'flex'}}} orientation="vertical" flexItem />
           <Box sx={{width: '100%', display:{md:"flex"}}}>

@@ -62,21 +62,20 @@ type hotel = {
 
 }
 interface Properties{
-  hotelsRoomsSets: actHotel[]
-  setFilteredHotelRoomSets: React.Dispatch<React.SetStateAction<actHotel[]>>
+  
   memHotels:hotel[]
   setHotels: React.Dispatch<React.SetStateAction<hotel[]>>
+  hotels: hotel[]
+  setAdultsKids: React.Dispatch<React.SetStateAction<{adults?: number, kids?: number}>>
+  adultsKids: {adults?: number, kids?: number}
 }
 
-function valuetext(value: number) {
-  return `${value}°C`;
-}
 
-const Sidebar: React.FC<Properties> = ({setHotels, memHotels, hotelsRoomsSets, setFilteredHotelRoomSets}) => {
+
+const Sidebar: React.FC<Properties> = ({setHotels, hotels, memHotels, setAdultsKids, adultsKids}) => {
 
   const [starList, setStarList] = useState<boolean>(false);
   const [roomList, setRoomList] = useState<boolean>(false);
-  const [ adultsKids, setAdultsKids ] = useState<{ adults?: number, kids?: number}>({adults: 0, kids: 0})
   const [value, setValue] = React.useState<number | null>(2);
 
 
@@ -99,18 +98,18 @@ const Sidebar: React.FC<Properties> = ({setHotels, memHotels, hotelsRoomsSets, s
     
   }, [value])
 
-  useEffect(()=>{
-    if(adultsKids){
-      let fhrs = hotelsRoomsSets.map((roomSet)=>{
-        return roomSet.filter((room)=>{
-          return room.occupancy.maxChildren>= adultsKids.kids! && room.occupancy.maxAdults>= adultsKids.adults!
-        })
-      })
-      // console.log(fhrs)
-      setFilteredHotelRoomSets(fhrs)
-    }
-    console.log(`thisis adultsKids: ${adultsKids.adults}, ${adultsKids.kids}, and this is value:${value}`)
-  }, [adultsKids, value])
+  // useEffect(()=>{
+  //   if(adultsKids){
+  //     let fhrs = hotelsRoomsSets.map((roomSet)=>{
+  //       return roomSet.filter((room)=>{
+  //         return room.occupancy.maxChildren>= adultsKids.kids! && room.occupancy.maxAdults>= adultsKids.adults!
+  //       })
+  //     })
+  //     // console.log(fhrs)
+  //     setFilteredHotelRoomSets(fhrs)
+  //   }
+  //   console.log(`thisis adultsKids: ${adultsKids.adults}, ${adultsKids.kids}, and this is value:${value}`)
+  // }, [adultsKids, value])
 
   
 

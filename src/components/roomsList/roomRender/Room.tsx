@@ -71,23 +71,6 @@ interface Properties{
 
 const Room:React.FC<Properties> = ({ hotels, filteredHotelRoomSets}) =>{               //hotelsRooms = 4*X && hotels = 4*Y
 
-  
-
-    useEffect(()=>{
-       
-      // const fhrs = hotelsRoomSets.filter((hotel)=>{
-      //   if(adultsKids){
-      //     return hotel.filter((room=>{
-      //       return room.occupancy.maxChildren >= adultsKids['kids']! && room.occupancy.maxAdults >= adultsKids['adults']!
-      //     }))
-      //   }
-      // })
-      // setFilteredHotelRoomSets(fhrs)
-      
-    }, [])
-
-
-
 
   const theRoomAccordion = (hotels: hotel[], hotelRoomSets: actHotel[])=>{       //hotelRooms == hotelsRooms == 4*X
 
@@ -108,8 +91,8 @@ const Room:React.FC<Properties> = ({ hotels, filteredHotelRoomSets}) =>{        
               <Stack key={index} direction="row" sx={{width:"80%", mb:2}}>
                 <Stack sx={{width:'27%'}}>
                         <Carousel
-                            next={ (next, active) => console.log('') }
-                            prev={ (prev, active) => console.log('') }          
+                            next={ (next, active) => null }
+                            prev={ (prev, active) => null }          
                             sx={{width: 150}}
                             NextIcon={<ArrowForwardIos/>}
                             PrevIcon={<ArrowBackIos/>}
