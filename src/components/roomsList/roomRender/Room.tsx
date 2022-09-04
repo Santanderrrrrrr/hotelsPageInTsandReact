@@ -92,7 +92,8 @@ const Room:React.FC<Properties> = ({ hotels, filteredHotelRoomSets}) =>{        
                 <Stack sx={{ display:{xs:'none', sm:'flex'}, width:'27%'}}>
                         <Carousel
                             next={ (next, active) => null }
-                            prev={ (prev, active) => null }          
+                            prev={ (prev, active) => null } 
+                            indicators={false}         
                             sx={{width: 150}}
                             NextIcon={<ArrowForwardIos/>}
                             PrevIcon={<ArrowBackIos/>}

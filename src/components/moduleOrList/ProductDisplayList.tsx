@@ -71,7 +71,7 @@ const ProductDisplayList: React.FC<Properties> = ({hotels, setOpenIt, setModalHo
   const theListItems = hotels.map((hotel, index)=>{
     return (
       <>
-        <Box key={index} sx={{  m:2, ml: 4, width: '100%' }}>
+        <Box key={index} sx={{  m:2, ml:{xs:0, md:4}, width: '100%' }}>
           <Stack spacing={2}>
               <Stack display= 'flex' direction={{xs:'column', md:'row'}}>
                 {/* <CardMedia
@@ -81,7 +81,7 @@ const ProductDisplayList: React.FC<Properties> = ({hotels, setOpenIt, setModalHo
                   alt={hotel.name}
                 /> */}
                 <CardContent sx={{ width:{xs:'100%', md:'40%', lg:'25%'}, height: 300 }}>
-                  <Carousel sx={{width: '100%', height: 300}}>
+                  <Carousel indicators={false} sx={{width: '100%', height: 300}}>
                     {hotel.imgs.map((img, i)=>{
                       return (
                       <CardMedia
