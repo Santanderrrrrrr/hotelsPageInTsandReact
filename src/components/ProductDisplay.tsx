@@ -110,14 +110,14 @@ const ProductDisplay: React.FC<Properties> = ({ hotels, filteredHotelRoomSets}) 
             onChange={handleTabChange}
             aria-label="basic tabs"
           >
-            <Tab label="Hotels" {...a11yProps(0)} />
-            <Tab label="Hotels w/ Rooms" {...a11yProps(1)} />
+            <Tab label="Hotels w/ Rooms" {...a11yProps(0)} />
+            <Tab label="Hotels" {...a11yProps(1)} />
             
           </Tabs>
         </Box>
 
         {/* toggle between list and module view */}
-        {!seeRooms && <Stack sx={{ m: 2,  direction: 'column', alignItems: {md:'flex-end', xs:'flex-end'}, justifyContent:'space-between', width:{xs:"30%", md: "30%"}}}>  
+        {!!seeRooms && <Stack sx={{ m: 2,  direction: 'column', alignItems: {md:'flex-end', xs:'flex-end'}, justifyContent:'space-between', width:{xs:"30%", md: "30%"}}}>  
           <CustomToggleButtonGroup
             orientation="horizontal"
             value={view}
@@ -137,7 +137,7 @@ const ProductDisplay: React.FC<Properties> = ({ hotels, filteredHotelRoomSets}) 
       </Box>
 
       <Stack>
-        {!seeRooms?( 
+        {!!seeRooms?( 
           <>
             {view === "list" && <ProductDisplayList hotels={hotels} setOpenIt={setOpenIt} setModalHotel={setModalHotel}/>}
             {view === "module" && <ProductDisplayGrid hotels={hotels} setOpenIt={setOpenIt} setModalHotel={setModalHotel}/>}
