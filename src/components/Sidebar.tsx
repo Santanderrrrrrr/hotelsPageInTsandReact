@@ -5,82 +5,33 @@ import ExpandMore from '@mui/icons-material/ExpandMore'
 import StarsIcon from '@mui/icons-material/Stars'
 import SingleBedIcon from '@mui/icons-material/SingleBed'
 import Collapse from '@mui/material/Collapse';
-import BedIcon from '@mui/icons-material/Bed';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import EscalatorWarningIcon from '@mui/icons-material/EscalatorWarning';
 
+import * as theTypes from '../componentTypes/sidebarTypes.types'
 
-
-type room = {
-  id: string
-  name: string
-  bedConfiguration: string
-  longDescription: string
-  occupancy:{
-      maxAdults: number,
-      maxChildren: number,
-  }
-  disabledAccess: boolean
-  facilities:{
-      code: string,
-      name: string
-  }[]
-  images: {
-      url: string
-  }[]
-
-}
-
-type actHotel = room[]
-
-
-
-type hotel = {
-  id: string
-  name: string;
-  imgs: {
-    url: string
-  }[] 
-  contacts:{
-    email: string
-    telephone: number
-  }
-  location:{
-      geoLocation:{
-        latitude: number
-        longitude: number
-        timezone: string
+function debounce<F extends (...params: any[]) => void> (func: F, delay = 1000){
+  let timeoutId: ReturnType<typeof setTimeout>;
+  return (...args:any[])=>{
+      if(timeoutId){
+          clearTimeout(timeoutId)
       }
-      country: string
-      town: string
-      countryCode: string
-      postCode: string
-      addresses: string[]
+      timeoutId = setTimeout(() =>{
+          // console.log("timer called")
+          func.apply(null, args)
+      }, delay);
+      
   }
-  rating: number
-  description: string
-
-}
-interface Properties{
-  
-  memHotels:hotel[]
-  setHotels: React.Dispatch<React.SetStateAction<hotel[]>>
-  hotels: hotel[]
-  setAdultsKids: React.Dispatch<React.SetStateAction<{adults?: number, kids?: number}>>
-  adultsKids: {adults?: number, kids?: number}
 }
 
-
-
-const Sidebar: React.FC<Properties> = ({setHotels, hotels, memHotels, setAdultsKids, adultsKids}) => {
+const Sidebar: React.FC<theTypes.Properties> = ({setHotels,  memHotels, setAdultsKids, adultsKids}) => {
 
   const [starList, setStarList] = useState<boolean>(false);
   const [roomList, setRoomList] = useState<boolean>(false);
   const [value, setValue] = React.useState<number | null>(2);
 
 
-  const collapseStars = () => {
-    
+  const collapseStars = () => { 
     setStarList(!starList);
   };
   const collapseRooms = () => {
@@ -98,28 +49,13 @@ const Sidebar: React.FC<Properties> = ({setHotels, hotels, memHotels, setAdultsK
     
   }, [value])
 
-  // useEffect(()=>{
-  //   if(adultsKids){
-  //     let fhrs = hotelsRoomsSets.map((roomSet)=>{
-  //       return roomSet.filter((room)=>{
-  //         return room.occupancy.maxChildren>= adultsKids.kids! && room.occupancy.maxAdults>= adultsKids.adults!
-  //       })
-  //     })
-  //     // console.log(fhrs)
-  //     setFilteredHotelRoomSets(fhrs)
-  //   }
-  //   console.log(`thisis adultsKids: ${adultsKids.adults}, ${adultsKids.kids}, and this is value:${value}`)
-  // }, [adultsKids, value])
-
   
-
-//sx={{display: 'flex', direction: {xs:'column', md:'row'}, alignItems:"flex-start"}}
   return (
     // <ThemeProvider theme={theme}>
       <Box >
         <Stack display="flex" direction={{xs:'row', md:'column'}} justifyContent="flex-start" alignItems={{xs:"flex-start", md:"flex-start"}} spacing={0}>
           <Box> 
-            <ListItemButton onClick={collapseStars}>
+            <ListItemButton data-testid='starDropdown' onClick={collapseStars}>
               <ListItemIcon>
                 <StarsIcon />
               </ListItemIcon>
@@ -129,18 +65,20 @@ const Sidebar: React.FC<Properties> = ({setHotels, hotels, memHotels, setAdultsK
             <Collapse in={starList} timeout="auto" unmountOnExit >
               <Box sx={{ display: 'flex', direction: 'column', justifyContent:{lg: 'center', xs: 'center'}, ml:{lg: 4, xs:4}, alignItems: 'center'}}>
                 <Rating
+                  
                   name="simple-controlled"
+                  data-testid='starRatingRadios'
                   value={value}
                   onChange={(event, newValue) => {
                     
-                    setValue(newValue);
+                    setValue(newValue)
                   }}
                 />
               </Box>
             </Collapse>
           </Box>
           <Box>
-            <ListItemButton onClick={collapseRooms}>
+            <ListItemButton data-testid='roomDropdown' onClick={collapseRooms}>
               <ListItemIcon>
                 <SingleBedIcon />
               </ListItemIcon>

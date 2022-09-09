@@ -20,6 +20,7 @@
     "eslint-config-react-app": "^7.0.1",
     "google-map-react": "^2.2.0",
     "google-maps": "^4.3.3",
+    "jest-dom": "^4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-material-ui-carousel": "^3.4.2",
@@ -31,7 +32,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "coverage": "npm test --coverage --watchAll --collectCoverageFrom='!src/components/**/*.{types,stories,constants,test,spec}.{ts,tsx}'"
   },
   "eslintConfig": {
     "extends": [
@@ -52,6 +54,7 @@
     ]
   },
   "devDependencies": {
-    "@types/google-map-react": "^2.1.7"
+    "@types/google-map-react": "^2.1.7",
+    "@types/react-test-renderer": "^18.0.0"
   }
 }

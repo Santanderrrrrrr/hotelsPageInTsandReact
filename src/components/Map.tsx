@@ -2,41 +2,9 @@ import React, {useEffect, useMemo, useRef, useCallback} from 'react'
 
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api'
 
+import * as theTypes from '../componentTypes/mapTypes.types'
 
 
-interface ForMapB{
-  mahoteli:{
-    name: string;
-    imgs: {
-      url: string
-    }[] 
-    contacts:{
-      email: string
-      telephone: number
-    }
-    location:{
-        geoLocation:{
-          latitude: number
-          longitude: number
-          timezone: string
-        }
-        country: string
-        town: string
-        countryCode: string
-        postCode: string
-        addresses: string[]
-    }
-    rating: number
-    description: string
-
-  }[] | undefined
-}
-interface Location{
-  lat: number,
-  lng: number
-} 
-
-type LatLngLiteral = google.maps.LatLngLiteral;
 
 
 const containerStyle = {
@@ -44,7 +12,7 @@ const containerStyle = {
   height: '35vh'
 }
 
-let location: Location
+let location: theTypes.Location
 
 async function locationSetter(): Promise<void> {
   if (navigator.geolocation) {
@@ -74,7 +42,7 @@ async function locationSetter(): Promise<void> {
 
 
 
-const Map: React.FC<ForMapB> =  ({mahoteli}) => {
+const Map: React.FC<theTypes.ForMapB> =  ({mahoteli}) => {
 
   const mapRef = useRef()
 
@@ -96,7 +64,7 @@ const Map: React.FC<ForMapB> =  ({mahoteli}) => {
     })
     
   const markers = validCoords!.map((hoteli, index)=>{
-    let position: LatLngLiteral = {lat: hoteli.location.geoLocation.latitude, lng: hoteli.location.geoLocation.longitude}
+    let position: theTypes.LatLngLiteral = {lat: hoteli.location.geoLocation.latitude, lng: hoteli.location.geoLocation.longitude}
     // console.log("facts")
     // let icon = hoteli.imgs[0].url
     return (<>

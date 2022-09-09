@@ -12,61 +12,7 @@ import RoomDisplay from './roomsList/RoomDisplay'
 
 import BasicModal from './moduleOrList/modal/BasicModal';
 
-
-type room = {
-  id: string
-  name: string
-  bedConfiguration: string
-  longDescription: string
-  occupancy:{
-      maxAdults: number,
-      maxChildren: number,
-  }
-  disabledAccess: boolean
-  facilities:{
-      code: string,
-      name: string
-  }[]
-  images: {
-      url: string
-  }[]
-
-}
-
-type actHotel = room[] //X
-
-type hotel = {
-  id: string
-  name: string;
-  imgs: {
-    url: string
-  }[] 
-  contacts:{
-    email: string
-    telephone: number
-  }
-  location:{
-      geoLocation:{
-        latitude: number
-        longitude: number
-        timezone: string
-      }
-      country: string
-      town: string
-      countryCode: string
-      postCode: string
-      addresses: string[]
-  }
-  rating: number
-  description: string
-
-}
-interface Properties{
-  
-  hotels:hotel[]
-  filteredHotelRoomSets: actHotel[]
-  
-}
+import * as theTypes from '../componentTypes/productDisplay.types'
 
 
 const CustomToggleButtonGroup = styled(ToggleButtonGroup)(({theme})=>({
@@ -82,10 +28,10 @@ function a11yProps(index: number) {
   };
 }
 
-const ProductDisplay: React.FC<Properties> = ({ hotels, filteredHotelRoomSets}) => {
+const ProductDisplay: React.FC<theTypes.Properties> = ({ hotels, filteredHotelRoomSets}) => {
   
   const [openIt, setOpenIt] = useState<boolean>(false);
-  const [ modalHotel, setModalHotel ] = useState<hotel>()
+  const [ modalHotel, setModalHotel ] = useState<theTypes.hotel>()
   const [view, setView] = useState<string>('list');
   const [ seeRooms, setSeeRooms ] = useState<number>(0)
 
