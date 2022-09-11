@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import CardMedia from '@mui/material/CardMedia';
 import Carousel from 'react-material-ui-carousel'
-import { Button, Card, CardActions, CardContent, Grid, Rating, Typography } from '@mui/material';
+import { Button, CardActions, CardContent, Grid, Rating, Typography } from '@mui/material';
 
 
 
@@ -70,7 +70,7 @@ const ProductDisplayList: React.FC<Properties> = ({hotels, setOpenIt, setModalHo
 
   const theListItems = hotels.map((hotel, index)=>{
     return (
-      <>
+      <React.Fragment key={hotel.id}>
         <Box key={index} sx={{  m:2, ml:{xs:0, md:4}, width: '100%' }}>
           <Stack spacing={2}>
               <Stack display= 'flex' direction={{xs:'column', md:'row'}}>
@@ -121,7 +121,7 @@ const ProductDisplayList: React.FC<Properties> = ({hotels, setOpenIt, setModalHo
               </Stack>
           </Stack>
         </Box>
-      </>
+      </React.Fragment>
     )
 
     })

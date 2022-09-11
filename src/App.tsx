@@ -7,7 +7,7 @@ import Map from './components/Map'
 import Sidebar from './components/Sidebar'
 import ProductDisplay from './components/ProductDisplay'
 
-import * as theTypes from './componentTypes/appTypes.types'
+import * as theTypes from './componentTypes/allTheTypes.types'
 
 
 

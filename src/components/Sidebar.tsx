@@ -8,23 +8,23 @@ import Collapse from '@mui/material/Collapse';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import EscalatorWarningIcon from '@mui/icons-material/EscalatorWarning';
 
-import * as theTypes from '../componentTypes/sidebarTypes.types'
+import * as theTypes from '../componentTypes/allTheTypes.types'
 
-function debounce<F extends (...params: any[]) => void> (func: F, delay = 1000){
-  let timeoutId: ReturnType<typeof setTimeout>;
-  return (...args:any[])=>{
-      if(timeoutId){
-          clearTimeout(timeoutId)
-      }
-      timeoutId = setTimeout(() =>{
-          // console.log("timer called")
-          func.apply(null, args)
-      }, delay);
+// function debounce<F extends (...params: any[]) => void> (func: F, delay = 1000){
+//   let timeoutId: ReturnType<typeof setTimeout>;
+//   return (...args:any[])=>{
+//       if(timeoutId){
+//           clearTimeout(timeoutId)
+//       }
+//       timeoutId = setTimeout(() =>{
+//           // console.log("timer called")
+//           func.apply(null, args)
+//       }, delay);
       
-  }
-}
+//   }
+// }
 
-const Sidebar: React.FC<theTypes.Properties> = ({setHotels,  memHotels, setAdultsKids, adultsKids}) => {
+const Sidebar: React.FC<theTypes.SidebarProperties> = ({setHotels,  memHotels, setAdultsKids, adultsKids}) => {
 
   const [starList, setStarList] = useState<boolean>(false);
   const [roomList, setRoomList] = useState<boolean>(false);

@@ -69,3 +69,78 @@ export const theData =[
         description: 'something unexpected but true'
     },
 ]
+
+export const theRooms =[
+    //actHotel_1
+        [{//room
+            id: 'xyz',
+            name: 'very nice',
+            bedConfiguration: 'double',
+            longDescription: 'not so long description',
+            occupancy:{
+                maxAdults: 8,
+                maxChildren: 9,
+            },
+            disabledAccess: true,
+            facilities:[{
+                code: 'not encrypted',
+                name: 'henderson'
+            }],
+            images: [{
+                url: 'ohmyword.png'
+            }]
+        }, {//room
+            id: 'xyz',
+            name: 'very nice',
+            bedConfiguration: 'double',
+            longDescription: 'not so long description',
+            occupancy:{
+                maxAdults: 8,
+                maxChildren: 9,
+            },
+            disabledAccess: true,
+            facilities:[{
+                code: 'not encrypted',
+                name: 'henderson'
+            }],
+            images: [{
+                url: 'ohmyword.png'
+            }]
+        }],
+    //actHotel_2
+        [{//room
+            id: 'xyz',
+            name: 'very nice',
+            bedConfiguration: 'double',
+            longDescription: 'not so long description',
+            occupancy:{
+                maxAdults: 8,
+                maxChildren: 9,
+            },
+            disabledAccess: true,
+            facilities:[{
+                code: 'not encrypted',
+                name: 'henderson'
+            }],
+            images: [{
+                url: 'ohmyword.png'
+            }]
+        }, {//room
+            id: 'xyz',
+            name: 'very nice',
+            bedConfiguration: 'double',
+            longDescription: 'not so long description',
+            occupancy:{
+                maxAdults: 8,
+                maxChildren: 9,
+            },
+            disabledAccess: true,
+            facilities:[{
+                code: 'not encrypted',
+                name: 'henderson'
+            }],
+            images: [{
+                url: 'ohmyword.png'
+            }]
+        }]
+]

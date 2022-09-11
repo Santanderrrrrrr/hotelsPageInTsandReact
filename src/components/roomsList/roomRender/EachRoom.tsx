@@ -24,14 +24,15 @@ type room = {
 
   interface Properties {
     theRightRooms: room[]
+    indexNum: number
   }
 
-const EachRoom: React.FC<Properties> = ({theRightRooms}) => {
+const EachRoom: React.FC<Properties> = ({theRightRooms, indexNum}) => {
 
     const roomsMap = theRightRooms?.map((room, index)=>{
         return (
-            <>
-                <Stack key={index} direction="row"  sx={{display: 'flex', justifyContent: 'flex-start', mt:3}}>
+            <React.Fragment key={index} >
+                <Stack data-testid={`room ${index} of hotel ${indexNum}`} key={index} direction="row"  sx={{display: 'flex', justifyContent: 'flex-start', mt:3}}>
                     
                     
                     <Stack sx={{width: '30%', mr: 2}} >
@@ -47,12 +48,12 @@ const EachRoom: React.FC<Properties> = ({theRightRooms}) => {
                 {index === theRightRooms.length-1? "": (<Divider orientation="horizontal" flexItem sx={{m:2}}/>)}
                 
 
-            </>)
+            </React.Fragment>)
     })
   return (
     <>
-    <Typography variant="body1">{theRightRooms && Object.keys(theRightRooms).length>0? 'Available Rooms' : 'No rooms in this hotel are of capacity'} </Typography>
-    {roomsMap}
+        <Typography variant="body1">{theRightRooms && Object.keys(theRightRooms).length>0? 'Available Rooms' : 'No rooms in this hotel are of capacity'} </Typography>
+        {roomsMap}
     </>
   )
 }

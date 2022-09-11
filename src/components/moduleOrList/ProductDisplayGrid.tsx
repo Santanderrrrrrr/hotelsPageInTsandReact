@@ -74,11 +74,12 @@ const ProductDisplayGrid: React.FC<Properties> = ({hotels, setOpenIt, setModalHo
   let theCard =hotels.map((hotel, index) => {
     
     return(
-      <>
+      <React.Fragment key={hotel.id}>
         <Box key={index} ref={addToRefs} ml={4}>
           <Grid sx={{xs: 12, md: 5, lg: 3}}>
             <Card sx={{ maxWidth: 345 }}>
               <CardMedia
+                data-testid={`image for hotel #${index}`}
                 component="img"
                 height="140"
                 image={hotel.imgs[0].url}
@@ -97,7 +98,7 @@ const ProductDisplayGrid: React.FC<Properties> = ({hotels, setOpenIt, setModalHo
 
               </CardContent>
               <CardActions>
-                <Button onClick={()=>handleOpen(hotel.name, hotel.description)} size="small">View</Button>
+                <Button data-testid={`viewButton-${index}`} onClick={()=>handleOpen(hotel.name, hotel.description)} size="small">View</Button>
                 
               </CardActions>
               
@@ -108,7 +109,7 @@ const ProductDisplayGrid: React.FC<Properties> = ({hotels, setOpenIt, setModalHo
             </Card>
           </Grid>
         </Box>
-      </>
+      </React.Fragment>
   )})
 
 

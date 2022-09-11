@@ -81,74 +81,67 @@ const Room:React.FC<Properties> = ({ hotels, filteredHotelRoomSets}) =>{        
       // console.log(theRightRooms)
   
       return(
-        <>
+        <React.Fragment key={index}>
           <Accordion sx={{width:'80%'}}>
             <AccordionSummary
+              data-testid={`batch #${index}`}
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
               id="panel1a-header"
             >
-              <Stack key={index} direction="row" sx={{width:"80%", mb:2}}>
-                <Stack sx={{ display:{xs:'none', sm:'flex'}, width:'27%'}}>
-                        <Carousel
-                            next={ (next, active) => null }
-                            prev={ (prev, active) => null } 
-                            indicators={false}         
-                            sx={{width: 150}}
-                            NextIcon={<ArrowForwardIos/>}
-                            PrevIcon={<ArrowBackIos/>}
-                            >
-                                {hotel.imgs.map((img, index)=>{
-                                return (
-                                <Stack sx={{ width: 150, height: 150, display: 'flex', direction:'row', alignItems: 'center', justifyContent: 'center' }}>
-                                    <img
-                                      key={index}
-                                      // component="img"
-                                      style={{maxWidth:'100%', maxHeight:'100%'}}
-                                      src={img.url}
-                                      alt={hotel.name}
-                                    />
-                                </Stack>)
-                                })}
-                        </Carousel>
-                    </Stack>
+              <Stack key={hotel.id} direction="row" sx={{width:"80%", mb:2}}>
+                <Stack sx={{ display:{xs:'none', sm:'flex'}, width:'27%', mr: 3}}>
+                    <Carousel
+                        next={ (next, active) => null }
+                        prev={ (prev, active) => null } 
+                        indicators={false}         
+                        sx={{width: 150}}
+                        NextIcon={<ArrowForwardIos/>}
+                        PrevIcon={<ArrowBackIos/>}
+                        >
+                            {hotel.imgs.map((img, index)=>{
+                            return (
+                            <Stack key={index} sx={{ width: 150, height: 150, display: 'flex', direction:'row', alignItems: 'center', justifyContent: 'center' }}>
+                                <img
+                                  
+                                  // component="img"
+                                  style={{maxWidth:'100%', maxHeight:'100%'}}
+                                  src={img.url}
+                                  alt={hotel.name}
+                                />
+                            </Stack>)
+                            })}
+                    </Carousel>
+                </Stack>
                   {/* <img
                     style={{ width: 150, height: 150 }}
                     src={hotel.imgs[0].url}
                     alt={hotel.name} /> */}
                 
-                  <Stack width="80%" direction="column" justifyContent="flex-start" ml={4} mt={1}>
-                    <Box sx={{ width:'100%', display: 'flex', direction: 'row',  justifyContent: "space-between"}}>
-                      <Typography variant="h5" component="div">
-                        {hotel.name}
-                      </Typography>
-                      <Rating value={Number(hotel.rating)} readOnly />
-                    </Box>
-                    <Box>
-                      <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>{hotel.location.country}</Typography>
-                      <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                        {hotel.location.addresses[0]}
-                      </Typography>
-                    </Box>
-                  </Stack>
+                <Stack width="63%" direction="column" justifyContent="flex-start" ml={4} mt={1}>
+                  <Box sx={{ width:'100%', display: 'flex', direction: 'row',  justifyContent: "space-between"}}>
+                    <Typography variant="h5" component="div">
+                      {hotel.name}
+                    </Typography>
+                    <Rating value={Number(hotel.rating)} readOnly />
+                  </Box>
+                  <Box>
+                    <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>{hotel.location.country}</Typography>
+                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                      {hotel.location.addresses[0]}
+                    </Typography>
+                  </Box>
+                </Stack>
                 
               </Stack>	
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails data-testid={`will be hidden ${index}`}>
               
-                <EachRoom theRightRooms={theRightRooms}/>
+                <EachRoom theRightRooms={theRightRooms} indexNum={index}/>
               
             </AccordionDetails>
-          </Accordion>
-
-
-
-
-
-
-
-                   
-        </>
+          </Accordion>         
+        </React.Fragment>
     )})
     return hotelDisplay
   }

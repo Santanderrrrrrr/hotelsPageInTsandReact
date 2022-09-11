@@ -111,7 +111,7 @@ export const getHotelRooms = async(hotelId: string): Promise<room[] | undefined>
       }
       return neededRoomData
     })
-    // console.log(rooms)
+    console.log(JSON.stringify(rooms))
     return rooms
   }catch(err){
     if(err instanceof Error) console.log(err.message? err.message : err + "This is the error")

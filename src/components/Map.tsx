@@ -2,7 +2,7 @@ import React, {useEffect, useMemo, useRef, useCallback} from 'react'
 
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api'
 
-import * as theTypes from '../componentTypes/mapTypes.types'
+import * as theTypes from '../componentTypes/allTheTypes.types'
 
 
 

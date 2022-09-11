@@ -96,4 +96,25 @@ describe('sidebar testing', ()=>{
         fireEvent.change(theSlider, {target: {value: '4'}})
         expect(theSlider.value).toBe("4")
     })
+
+    //does the star rating actually have value
+    test('seeing if clicking on a star works in rating', async ()=>{
+        const setHotels = jest.fn()
+        const setANK = jest.fn()
+        const memHotels: theTypes.hotel[] = theData
+        const ank: theTypes.Properties['adultsKids'] = {
+            adults: 1,
+            kids: 2
+        }
+        render(<Sidebar setHotels={setHotels} memHotels={memHotels} adultsKids={ank} setAdultsKids={setANK}/>)
+        userEvent.click(screen.getByTestId('starDropdown'))
+        
+        const theRating = screen.getByRole('radio', {
+            name: '3 Stars'
+        })
+        fireEvent.click(theRating)
+        await waitFor(()=>{
+            expect(theRating).toBeChecked()
+        })
+    })
 })

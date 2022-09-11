@@ -12,7 +12,7 @@ import RoomDisplay from './roomsList/RoomDisplay'
 
 import BasicModal from './moduleOrList/modal/BasicModal';
 
-import * as theTypes from '../componentTypes/productDisplay.types'
+import * as theTypes from '../componentTypes/allTheTypes.types'
 
 
 const CustomToggleButtonGroup = styled(ToggleButtonGroup)(({theme})=>({
