@@ -24,7 +24,7 @@ const [ adultsKids, setAdultsKids ] = useState<{ adults?: number, kids?: number}
     let dataArray: theTypes.actHotel[] = []
     for(let hotel of hotels){
       let hotelDeets = await getHotelRooms(hotel.id)
-      hotelDeets = hotelDeets!.filter((room)=>{
+      hotelDeets = await hotelDeets!.filter((room)=>{
         return room.occupancy.maxChildren>= adultsKids.kids! && room.occupancy.maxAdults>= adultsKids.adults!
       })
       dataArray.push(hotelDeets!) 
@@ -36,8 +36,8 @@ const [ adultsKids, setAdultsKids ] = useState<{ adults?: number, kids?: number}
   
   const dataAfterAwait = async()=>{
     const hotelData = await getHotels()
-    setMahoteli(hotelData!)
-    setMemHoteli(hotelData!)
+    await setMahoteli(hotelData!)
+    await setMemHoteli(hotelData!)
     // console.log("this is mahoteli")
   }
 

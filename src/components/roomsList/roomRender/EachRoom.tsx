@@ -1,33 +1,9 @@
 import { Divider, Stack, Typography } from '@mui/material'
 import React from 'react'
 
+import * as theTypes from '../../../componentTypes/allTheTypes.types'
 
-type room = {
-    id: string
-    name: string
-    bedConfiguration: string
-    longDescription: string
-    occupancy:{
-        maxAdults: number,
-        maxChildren: number,
-    }
-    disabledAccess: boolean
-    facilities:{
-        code: string,
-        name: string
-    }[]
-    images: {
-        url: string
-    }[]
-  
-  }
-
-  interface Properties {
-    theRightRooms: room[]
-    indexNum: number
-  }
-
-const EachRoom: React.FC<Properties> = ({theRightRooms, indexNum}) => {
+const EachRoom: React.FC<theTypes.eachRoomProperties> = ({theRightRooms, indexNum}) => {
 
     const roomsMap = theRightRooms?.map((room, index)=>{
         return (

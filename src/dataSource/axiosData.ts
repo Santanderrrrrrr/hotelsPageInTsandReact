@@ -1,64 +1,30 @@
 import axios from 'axios';
+import * as theTypes from '../componentTypes/allTheTypes.types'
 
-type hotel = {
-  id: string
-  name: string;
-  imgs: {
-    url: string
-  }[] 
-  contacts:{
-    email: string
-    telephone: number
-  }
-  location:{
-      geoLocation:{
-        latitude: number
-        longitude: number
-        timezone: string
-      }
-      country: string
-      town: string
-      countryCode: string
-      postCode: string
-      addresses: string[]
-  }
-  rating: number
-  description: string
-
-}
-
-type room = {
-  id: string
-  name: string
-  bedConfiguration: string
-  longDescription: string
-  occupancy:{
-      maxAdults: number,
-      maxChildren: number,
-  }
-  disabledAccess: boolean
-  facilities:{
-      code: string,
-      name: string
-  }[]
-  images: {
-      url: string
-  }[] 
-}
-
-interface Properties{
-  hotels:hotel[]
-}
 
 const linki: string = `https://obmng.dbm.guestline.net/api/hotels?collection-id=OBMNG`
 const linkiForRoom: string = `https://obmng.dbm.guestline.net/api/roomRates/OBMNG`
 
-export const getHotels = async(): Promise<Properties['hotels'] | undefined> => {
+// function debounce<F extends (...params: any[]) => void> (func: F, delay = 1000){
+//   let timeoutId: ReturnType<typeof setTimeout>;
+//   return (...args:any[])=>{
+//       if(timeoutId){
+//           clearTimeout(timeoutId)
+//       }
+//       timeoutId = setTimeout(() =>{
+//           // console.log("timer called")
+//           func.apply(null, args)
+//       }, delay);
+      
+//   }
+// }
+
+export const getHotels = async(): Promise<theTypes.Properties['hotels'] | undefined> => {
     try{
         let {data} = await axios.get(`${linki}`)
         // console.log(data)
 
-        let theDataArray: Properties['hotels'] = [];
+        let theDataArray: theTypes.Properties['hotels'] = [];
 
         for (let tidbit of data){
             theDataArray.push(
@@ -93,7 +59,7 @@ export const getHotels = async(): Promise<Properties['hotels'] | undefined> => {
     }
 }
 
-export const getHotelRooms = async(hotelId: string): Promise<room[] | undefined> =>{
+export const getHotelRooms = async(hotelId: string): Promise<theTypes.room[] | undefined> =>{
   try{ 
     let {data} = await axios.get(`${linkiForRoom}/${hotelId}`)
     // console.log(data)
@@ -111,7 +77,7 @@ export const getHotelRooms = async(hotelId: string): Promise<room[] | undefined>
       }
       return neededRoomData
     })
-    console.log(JSON.stringify(rooms))
+    // console.log(JSON.stringify(rooms))
     return rooms
   }catch(err){
     if(err instanceof Error) console.log(err.message? err.message : err + "This is the error")

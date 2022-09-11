@@ -5,43 +5,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Carousel from 'react-material-ui-carousel'
 import { Button, CardActions, CardContent, Grid, Rating, Typography } from '@mui/material';
 
-
-
-type hotel = {
-  id: string
-  name: string
-  imgs: {
-    url: string
-  }[] 
-  contacts:{
-    email: string
-    telephone: number
-  }
-  location:{
-      geoLocation:{
-        latitude: number
-        longitude: number
-        timezone: string
-      }
-      country: string
-      town: string
-      countryCode: string
-      postCode: string
-      addresses: string[]
-  }
-  rating: number
-  description: string
-
-}
-interface Properties{
-  
-  hotels:hotel[]
-  setOpenIt: React.Dispatch<React.SetStateAction<boolean>>
-  // openIt: boolean
-  setModalHotel: React.Dispatch<React.SetStateAction<hotel | undefined>>
-  // modalHotel: hotel | undefined
-
-}
+import * as theTypes from '../../componentTypes/allTheTypes.types'
 
 const bull = (
   <Box
@@ -53,7 +17,7 @@ const bull = (
 );
 
 
-const ProductDisplayList: React.FC<Properties> = ({hotels, setOpenIt, setModalHotel}) => {
+const ProductDisplayList: React.FC<theTypes.listDisplayProperties> = ({hotels, setOpenIt, setModalHotel}) => {
   
   const handleOpen = (name: string, description: string) => {
     // console.log(openIt)

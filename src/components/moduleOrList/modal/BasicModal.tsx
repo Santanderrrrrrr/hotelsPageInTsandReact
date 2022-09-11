@@ -3,41 +3,12 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import Carousel from 'react-material-ui-carousel'
-import { CardContent, CardMedia, Rating, Stack } from '@mui/material';
-// import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-// import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material';
+import { CardContent, Rating, Stack } from '@mui/material';
 
-interface Properties{
-  hotel: {
-    name: string;
-    imgs: {
-      url: string
-    }[] 
-    contacts:{
-      email: string
-      telephone: number
-    }
-    location:{
-        geoLocation:{
-          latitude: number
-          longitude: number
-          timezone: string
-        }
-        country: string
-        town: string
-        countryCode: string
-        postCode: string
-        addresses: string[]
-    }
-    rating: number
-    description: string
-  
-  } | undefined
-  setOpenIt: React.Dispatch<React.SetStateAction<boolean>>
-  openIt: boolean
-  
-}
+import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material';
+import * as theTypes from '../../../componentTypes/allTheTypes.types'
+
+
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -52,7 +23,7 @@ const style = {
   p: 4,
 };
 
-const BasicModal: React.FC<Properties> = ({hotel, openIt, setOpenIt}) => {
+const BasicModal: React.FC<theTypes.modalProperties> = ({hotel, openIt, setOpenIt}) => {
   const handleClose = () => {
     // console.log(openIt)
     setOpenIt(false);

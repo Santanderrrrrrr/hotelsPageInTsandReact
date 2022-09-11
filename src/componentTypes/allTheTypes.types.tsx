@@ -64,12 +64,13 @@ export interface Location{
   
 export type LatLngLiteral = google.maps.LatLngLiteral;
 
-//for product display
+//for product display 
 export interface Properties{
     hotels:hotel[]
     filteredHotelRoomSets: actHotel[]
 }
 
+//for Sidebar
 export interface SidebarProperties{
     
     memHotels:hotel[]
@@ -78,3 +79,30 @@ export interface SidebarProperties{
     setAdultsKids: React.Dispatch<React.SetStateAction<{adults?: number, kids?: number}>>
     adultsKids: {adults?: number, kids?: number}
   }
+
+//for Modal
+export interface modalProperties{
+    hotel: hotel | undefined
+    setOpenIt: React.Dispatch<React.SetStateAction<boolean>>
+    openIt: boolean
+}
+
+//for list and module hotel display
+export interface listDisplayProperties{
+    hotels:hotel[]
+    setOpenIt: React.Dispatch<React.SetStateAction<boolean>>
+    setModalHotel: React.Dispatch<React.SetStateAction<hotel | undefined>>
+}
+
+//for Room display
+export interface roomProperties{
+    hotels:hotel[]
+    filteredHotelRoomSets: actHotel[]
+  }
+
+//for each room
+export interface eachRoomProperties {
+    theRightRooms: room[]
+    indexNum: number
+  }
+

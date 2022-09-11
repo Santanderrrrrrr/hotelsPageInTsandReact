@@ -1,81 +1,21 @@
-import React, { useState, useEffect } from 'react';
-
-
+import React from 'react';
 import Typography from '@mui/material/Typography';
 import { Accordion, AccordionDetails, AccordionSummary, Box, Rating, Stack } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material'
-
-
 import Carousel from 'react-material-ui-carousel'
 
-
 import EachRoom from './EachRoom';
+import * as theTypes from '../../../componentTypes/allTheTypes.types'
 
 
-
-type hotel = {
-  id: string
-  name: string;
-  imgs: {
-    url: string
-  }[] 
-  contacts:{
-    email: string
-    telephone: number
-  }
-  location:{
-      geoLocation:{
-        latitude: number
-        longitude: number
-        timezone: string
-      }
-      country: string
-      town: string
-      countryCode: string
-      postCode: string
-      addresses: string[]
-  }
-  rating: number
-  description: string
-}
-
-type room = {
-  id: string
-  name: string
-  bedConfiguration: string
-  longDescription: string
-  occupancy:{
-      maxAdults: number,
-      maxChildren: number,
-  }
-  disabledAccess: boolean
-  facilities:{
-      code: string,
-      name: string
-  }[]
-  images: {
-      url: string
-  }[]
-
-}
-
-type actHotel = room[] //X
-
-interface Properties{
-  filteredHotelRoomSets: actHotel[] //4*X
-  hotels:hotel[]  //4*Y
-}
+const Room:React.FC<theTypes.roomProperties> = ({ hotels, filteredHotelRoomSets}) =>{               //hotelsRooms = 4*X && hotels = 4*Y
 
 
-
-const Room:React.FC<Properties> = ({ hotels, filteredHotelRoomSets}) =>{               //hotelsRooms = 4*X && hotels = 4*Y
-
-
-  const theRoomAccordion = (hotels: hotel[], hotelRoomSets: actHotel[])=>{       //hotelRooms == hotelsRooms == 4*X
+  const theRoomAccordion = (hotels: theTypes.hotel[], hotelRoomSets: theTypes.actHotel[])=>{       //hotelRooms == hotelsRooms == 4*X
 
     
-    let hotelDisplay= hotels?.map((hotel: hotel, index: number)=>{
+    let hotelDisplay= hotels?.map((hotel: theTypes.hotel, index: number)=>{
 
       let theRightRooms = hotelRoomSets[index]
       // console.log(theRightRooms)
@@ -113,11 +53,7 @@ const Room:React.FC<Properties> = ({ hotels, filteredHotelRoomSets}) =>{        
                             })}
                     </Carousel>
                 </Stack>
-                  {/* <img
-                    style={{ width: 150, height: 150 }}
-                    src={hotel.imgs[0].url}
-                    alt={hotel.name} /> */}
-                
+                                  
                 <Stack width="63%" direction="column" justifyContent="flex-start" ml={4} mt={1}>
                   <Box sx={{ width:'100%', display: 'flex', direction: 'row',  justifyContent: "space-between"}}>
                     <Typography variant="h5" component="div">

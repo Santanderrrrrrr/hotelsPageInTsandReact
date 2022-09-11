@@ -9,45 +9,11 @@ import Grid from '@mui/system/Unstable_Grid';
 import { Box } from '@mui/material';
 import { JsxElement } from 'typescript';
 
+import * as theTypes from '../../componentTypes/allTheTypes.types'
 
 
 
-type hotel = {
-  id: string
-  name: string;
-  imgs: {
-    url: string
-  }[] 
-  contacts:{
-    email: string
-    telephone: number
-  }
-  location:{
-      geoLocation:{
-        latitude: number
-        longitude: number
-        timezone: string
-      }
-      country: string
-      town: string
-      countryCode: string
-      postCode: string
-      addresses: string[]
-  }
-  rating: number
-  description: string
-
-}
-interface Properties{
-  
-  hotels:hotel[]
-  setOpenIt: React.Dispatch<React.SetStateAction<boolean>>
-  // openIt: boolean
-  setModalHotel: React.Dispatch<React.SetStateAction<hotel | undefined>>
-  // modalHotel: hotel | undefined
-}
-
-const ProductDisplayGrid: React.FC<Properties> = ({hotels, setOpenIt, setModalHotel}) => {
+const ProductDisplayGrid: React.FC<theTypes.listDisplayProperties> = ({hotels, setOpenIt, setModalHotel}) => {
 
   const handleOpen = (name: string, description: string) => {
     // console.log(openIt)

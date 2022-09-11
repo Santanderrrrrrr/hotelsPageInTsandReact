@@ -10,19 +10,7 @@ import EscalatorWarningIcon from '@mui/icons-material/EscalatorWarning';
 
 import * as theTypes from '../componentTypes/allTheTypes.types'
 
-// function debounce<F extends (...params: any[]) => void> (func: F, delay = 1000){
-//   let timeoutId: ReturnType<typeof setTimeout>;
-//   return (...args:any[])=>{
-//       if(timeoutId){
-//           clearTimeout(timeoutId)
-//       }
-//       timeoutId = setTimeout(() =>{
-//           // console.log("timer called")
-//           func.apply(null, args)
-//       }, delay);
-      
-//   }
-// }
+
 
 const Sidebar: React.FC<theTypes.SidebarProperties> = ({setHotels,  memHotels, setAdultsKids, adultsKids}) => {
 

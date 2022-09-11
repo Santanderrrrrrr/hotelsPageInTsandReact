@@ -1,10 +1,9 @@
-import { Stack, Box, styled, Typography, Tabs, Tab,  } from '@mui/material';
+import { Stack, Box, styled, Tabs, Tab,  } from '@mui/material';
 import ViewListIcon from '@mui/icons-material/ViewList';
 import ViewModuleIcon from '@mui/icons-material/ViewModule';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import React, {useState, useEffect} from 'react';
-import { getHotels } from '../dataSource/axiosData'
+import React, {useState} from 'react';
 
 import ProductDisplayList from './moduleOrList/ProductDisplayList';
 import ProductDisplayGrid from './moduleOrList/ProductDisplayGrid';
