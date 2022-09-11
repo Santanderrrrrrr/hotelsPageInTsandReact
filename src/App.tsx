@@ -4,6 +4,7 @@ import { getHotels, getHotelRooms} from './dataSource/axiosData'
 
 
 import Map from './components/Map'
+import Slide from './components/Slide'
 import Sidebar from './components/Sidebar'
 import ProductDisplay from './components/ProductDisplay'
 
@@ -55,9 +56,10 @@ const [ adultsKids, setAdultsKids ] = useState<{ adults?: number, kids?: number}
 
   return (
     <Box >
-      <Stack direction="column">
-        <Box  sx={{height:'30%', width:'100%', backgroundColor:'skyblue'}}>
-            <Map mahoteli={mahoteli}/>
+      <Stack direction="column" >
+        <Box  sx={{height:'30vh', width:'100vw', backgroundColor:'skyblue'}}>
+            {/* <Map mahoteli={mahoteli}/> */}
+            <Slide mahoteli={mahoteli}/>
         </Box>
         
         <Stack display="flex" direction={{xs:'column', md:'row'}} justifyContent="flex-start" alignItems={{xs:"flex-start", md:"flex-start"}} mb={0} pb={0}>       

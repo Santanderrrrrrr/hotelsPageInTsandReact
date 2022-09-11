@@ -11,7 +11,6 @@ import EscalatorWarningIcon from '@mui/icons-material/EscalatorWarning';
 import * as theTypes from '../componentTypes/allTheTypes.types'
 
 
-
 const Sidebar: React.FC<theTypes.SidebarProperties> = ({setHotels,  memHotels, setAdultsKids, adultsKids}) => {
 
   const [starList, setStarList] = useState<boolean>(false);
