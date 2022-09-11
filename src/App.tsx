@@ -57,7 +57,7 @@ const [ adultsKids, setAdultsKids ] = useState<{ adults?: number, kids?: number}
   return (
     <Box >
       <Stack direction="column" >
-        <Box  sx={{height:'30vh', width:'100vw', backgroundColor:'skyblue'}}>
+        <Box  sx={{height:'30vh', width:'100vw'}}>
             {/* <Map mahoteli={mahoteli}/> */}
             <Slide mahoteli={mahoteli}/>
         </Box>

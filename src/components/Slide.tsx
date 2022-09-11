@@ -15,10 +15,11 @@ const Slide: React.FC<theTypes.ForMapB> = ({mahoteli}) => {
       sx={{width: '100%', maxHeight:'30vh', display: 'flex', alignItems: 'center'}}
       NextIcon={<ArrowForwardIos/>}
       PrevIcon={<ArrowBackIos/>}
+      
       >
         {mahoteli!.map((hotel, index)=>{
           return (
-            <Stack key={index} sx={{ maxWidth: '100%', height: '100%', display: 'flex', direction:'row', alignItems: 'flex-start', justifyContent: 'center' }}>
+            <Stack key={index} sx={{ maxWidth: '100%', height: '100%', display: 'flex', direction:'row', alignItems: 'center', justifyContent: 'center' }}>
                 <img
                   
                   // component="img"
@@ -26,7 +27,7 @@ const Slide: React.FC<theTypes.ForMapB> = ({mahoteli}) => {
                   src={hotel.imgs[0].url}
                   alt={hotel.name}
                 />
-                <Typography variant="h1" sx={{position:'absolute', ml: 10, color:'white'}}>{hotel.name}</Typography>
+                {/* <Typography variant="h1" sx={{display:{sm:'none', lg:'block'}, position:'absolute', ml:-50, color:'white'}}>{hotel.name}</Typography> */}
             </Stack>
           )
         })}
